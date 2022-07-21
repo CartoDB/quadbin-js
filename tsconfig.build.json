@@ -3,13 +3,8 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     // Uncomment to debug
-    // "listEmittedFiles": true
-  },
-  "references": [
-  ],
-  "include": [
-    "src"
-  ],
-  "exclude": [
-  ]
+    "listEmittedFiles": true,
+    "noEmit": false,
+    "outDir": "dist"
+  }
 }
