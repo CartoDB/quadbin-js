@@ -16,13 +16,8 @@
     "cover": "ocular-test cover",
     "publish": "ocular-publish",
     "test": "ocular-test",
-    "test-fast": "ocular-test fast",
-    "test-node": "ocular-test node",
-    "test-browser": "ocular-test browser",
     "tsclean": "find . -name tsconfig.tsbuildinfo -exec rm {} \\;",
-    "tsbuild": "tsc -b tsconfig.build.json && node scripts/typed-entry.js",
-    "bench": "ocular-test bench",
-    "bench-browser": "ocular-test bench-browser"
+    "tsbuild": "tsc -b tsconfig.build.json && node scripts/typed-entry.js"
   },
   "browser": {
     "jsdom": false
