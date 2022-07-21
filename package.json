@@ -11,7 +11,7 @@
   "scripts": {
     "clean": "find . -name tsconfig.tsbuildinfo -exec rm {} \\;",
     "build": "tsc -b tsconfig.build.json",
-    "test": "npx ts-node node_modules/tape/bin/tape test/index.js"
+    "test": "npx ts-node node_modules/tape/bin/tape test/**/*.spec.js"
   },
   "browser": {
     "jsdom": false
