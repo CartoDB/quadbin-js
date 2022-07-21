@@ -18,7 +18,7 @@
     }
   },
   "include": [
-    "modules"
+    "src"
   ],
   "exclude": [
   ]

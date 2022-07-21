@@ -17,7 +17,7 @@
     "publish": "ocular-publish",
     "test": "ocular-test",
     "tsclean": "find . -name tsconfig.tsbuildinfo -exec rm {} \\;",
-    "tsbuild": "tsc -b tsconfig.build.json && node scripts/typed-entry.js"
+    "tsbuild": "tsc -b tsconfig.build.json"
   },
   "browser": {
     "jsdom": false
