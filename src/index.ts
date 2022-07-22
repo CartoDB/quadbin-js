@@ -8,12 +8,12 @@ const B = [
 ];
 const S = [0n, 1n, 2n, 4n, 8n, 16n];
 
-export function hexToBigInt(index: string): bigint {
-  return BigInt(`0x${index}`);
+export function hexToBigInt(hex: string): bigint {
+  return BigInt(`0x${hex}`);
 }
 
-export function bigIntToHex(quadbin: bigint): string {
-  return quadbin.toString(16);
+export function bigIntToHex(index: bigint): string {
+  return index.toString(16);
 }
 
 export function tileToQuadbin(tile): string {
