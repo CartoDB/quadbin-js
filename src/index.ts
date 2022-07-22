@@ -8,11 +8,11 @@ const B = [
 ];
 const S = [0n, 1n, 2n, 4n, 8n, 16n];
 
-export function indexToBigInt(index: string): bigint {
+export function hexToBigInt(index: string): bigint {
   return BigInt(`0x${index}`);
 }
 
-export function bigIntToIndex(quadbin: bigint): string {
+export function bigIntToHex(quadbin: bigint): string {
   return quadbin.toString(16);
 }
 
@@ -37,11 +37,11 @@ export function tileToQuadbin(tile): string {
     (z << 52n) |
     ((x | (y << 1n)) >> 12n) |
     (0xfffffffffffffn >> (z * 2n));
-  return bigIntToIndex(quadbin);
+  return bigIntToHex(quadbin);
 }
 
 export function quadbinToTile(index: string) {
-  const quadbin = indexToBigInt(index);
+  const quadbin = hexToBigInt(index);
   const mode = (quadbin >> 59n) & 7n;
   const modeDep = (quadbin >> 57n) & 3n;
   const z = (quadbin >> 52n) & 0x1fn;
@@ -68,14 +68,14 @@ export function quadbinToTile(index: string) {
 }
 
 export function quadbinZoom(index: string) {
-  const quadbin = indexToBigInt(index);
+  const quadbin = hexToBigInt(index);
   return (quadbin >> 52n) & 0x1fn;
 }
 
 export function quadbinParent(index: string) {
-  const quadbin = indexToBigInt(index);
+  const quadbin = hexToBigInt(index);
   const zparent = quadbinZoom(index) - 1n;
   const parent =
     (quadbin & ~(0x1fn << 52n)) | (zparent << 52n) | (0xfffffffffffffn >> (zparent * 2n));
-  return bigIntToIndex(parent);
+  return bigIntToHex(parent);
 }
