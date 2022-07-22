@@ -69,7 +69,7 @@ export function cellToTile(quadbin: Quadbin): Tile {
   return {z: Number(z), x: Number(x), y: Number(y)};
 }
 
-export function getResolution(quadbin: Quadbin): Quadbin {
+export function getResolution(quadbin: Quadbin): bigint {
   return (quadbin >> 52n) & 0x1fn;
 }
 

@@ -44,12 +44,36 @@ Encodes an index into a string, suitable for use in JSON.
 function hexToBigInt(hex: string): bigint
 ```
 
-Decodes an string into an index. Inverse of `bigIntToHex()`
+Decodes an string into an index. Inverse of `bigIntToHex()`.
 
-## tileToCell
+## getResolution
 
 ```javascript
-tileToCell(tile: {x: number, y: number, z: number}): bigint
+function getResolution(quadbin: bigint): bigint 
 ```
 
-Converts a xyz tile into a quadkey cell index.
+Calculates the resolution of a quadbin cell.
+
+## function cellToParent
+
+```javascript
+function cellToParent(quadbin: bigint): bigint 
+```
+
+Calculates the parent cell.
+
+## tileToCell
+bigint
+```javascript
+function tileToCell(tile: {x: number, y: number, z: number}): bigint
+```
+
+Converts a xyz tile into a quadbin cell.
+
+## cellToTile
+
+```javascript
+function cellToTile(quadbin: bigint): Tile 
+```
+
+Converts quadbin cell into a xyz tile.
