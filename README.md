@@ -11,10 +11,10 @@ npm install quadbin
 # Usage
 
 ```javascript
-import {hexToBigInt, getResolution} from 'quadbin';
+import {cellToParent, getResolution, hexToBigInt} from 'quadbin';
 
-getResolution(hexToBigInt('4830ffffffffffff'));
-// Returns: 3
+cellToParent(5210915457518796799n) // => 5206425052030959615n
+getResolution(hexToBigInt('4830ffffffffffff')) // => 3
 ```
 
 
