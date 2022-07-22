@@ -16,7 +16,7 @@ export function bigIntToHex(index: bigint): string {
   return index.toString(16);
 }
 
-export function tileToQuadbin(tile): string {
+export function tileToCell(tile): string {
   if (tile.z < 0 || tile.z > 26) {
     throw new Error('Wrong zoom');
   }
@@ -40,7 +40,7 @@ export function tileToQuadbin(tile): string {
   return bigIntToHex(quadbin);
 }
 
-export function quadbinToTile(index: string) {
+export function cellToTile(index: string) {
   const quadbin = hexToBigInt(index);
   const mode = (quadbin >> 59n) & 7n;
   const modeDep = (quadbin >> 57n) & 3n;
@@ -67,14 +67,14 @@ export function quadbinToTile(index: string) {
   return {z: Number(z), x: Number(x), y: Number(y)};
 }
 
-export function quadbinZoom(index: string) {
+export function getResolution(index: string) {
   const quadbin = hexToBigInt(index);
   return (quadbin >> 52n) & 0x1fn;
 }
 
-export function quadbinParent(index: string) {
+export function cellToParent(index: string) {
   const quadbin = hexToBigInt(index);
-  const zparent = quadbinZoom(index) - 1n;
+  const zparent = getResolution(index) - 1n;
   const parent =
     (quadbin & ~(0x1fn << 52n)) | (zparent << 52n) | (0xfffffffffffffn >> (zparent * 2n));
   return bigIntToHex(parent);
