@@ -1,0 +1,33 @@
+{
+  "name": "quadbin-js",
+  "description": "Utility functions for working with Quadbins",
+  "license": "MIT",
+  "private": true,
+  "keywords": ["quadbin", "webgl", "visualization"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CartoDB/quadbin-js.git"
+  },
+  "scripts": {
+    "clean": "find . -name tsconfig.tsbuildinfo -exec rm {} \\;",
+    "build": "tsc -b tsconfig.build.json",
+    "lint": "npx prettier --check src",
+    "test": "yarn lint && yarn test-fast",
+    "test-fast": "npx ts-node node_modules/tape/bin/tape test/**/*.spec.js"
+  },
+  "browser": {
+    "jsdom": false
+  },
+  "devDependencies": {
+    "@babel/register": "^7.13.0",
+    "babel-loader": "^8.0.0",
+    "babel-preset-minify": "^0.5.0",
+    "prettier": "^4.2.1",
+    "tape": "^4.11.0",
+    "typescript": "^4.4.4"
+  },
+  "engines": {
+    "node": ">=14"
+  },
+  "dependencies": {}
+}
