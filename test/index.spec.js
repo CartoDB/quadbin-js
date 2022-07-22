@@ -3,9 +3,9 @@ import {tileToCell, cellToTile, cellToParent, getResolution} from '../src/index'
 import {tileToQuadkey} from './quadkey-utils';
 
 const TEST_TILES = [
-  {x: 0, y: 0, z: 0, q: '480fffffffffffff'},
-  {x: 1, y: 2, z: 3, q: '48327fffffffffff'},
-  {x: 1023, y: 2412, z: 23, q: '4970000021df7d7f'}
+  {x: 0, y: 0, z: 0, q: 5192650370358181887n},
+  {x: 1, y: 2, z: 3, q: 5202361257054699519n},
+  {x: 1023, y: 2412, z: 23, q: 5291729562728627583n}
 ];
 
 test('Quadbin conversion', async t => {
