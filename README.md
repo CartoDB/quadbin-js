@@ -30,7 +30,11 @@ When working with quadbin indices in other contexts (e.g. passing as a parameter
 
 _Note: we are attempting to follow the API of h3-js to make this library a drop-in replacement for H3. H3-js is close to releasing a new version (4) [which changes the API](https://h3geo.org/docs/next/library/migration-3.x/functions/). This repo will follow the new conventions set in H3-JS v4_
 
-## bigIntToHex(index: bigint): string
+## bigIntToHex
+
+```typescript
+function bigIntToHex(index: bigint): string
+```
 
 Encodes an index into a string, suitable for use in JSON.
 
@@ -38,4 +42,4 @@ Encodes an index into a string, suitable for use in JSON.
 
 Decodes an string into an index. Inverse of `bigIntToHex()`
 
-
+## tileToCell(tile: {x: number, y: number, z: number}): bigint
