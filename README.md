@@ -32,14 +32,24 @@ _Note: we are attempting to follow the API of h3-js to make this library a drop-
 
 ## bigIntToHex
 
-```typescript
+```javascript
 function bigIntToHex(index: bigint): string
 ```
 
 Encodes an index into a string, suitable for use in JSON.
 
-## hexToBigInt(hex: string): bigint
+## hexToBigInt
+
+```javascript
+function hexToBigInt(hex: string): bigint
+```
 
 Decodes an string into an index. Inverse of `bigIntToHex()`
 
-## tileToCell(tile: {x: number, y: number, z: number}): bigint
+## tileToCell
+
+```javascript
+tileToCell(tile: {x: number, y: number, z: number}): bigint
+```
+
+Converts a xyz tile into a quadkey cell index.
