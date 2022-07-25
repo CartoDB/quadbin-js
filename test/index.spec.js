@@ -1,20 +1,20 @@
 import test from 'tape';
-import {tileToQuadbin, quadbinToTile, quadbinParent, quadbinZoom} from '../src/index'
+import {tileToCell, cellToTile, cellToParent, getResolution} from '../src/index'
 import {tileToQuadkey} from './quadkey-utils';
 
 const TEST_TILES = [
-  {x: 0, y: 0, z: 0, q: '480fffffffffffff'},
-  {x: 1, y: 2, z: 3, q: '48327fffffffffff'},
-  {x: 1023, y: 2412, z: 23, q: '4970000021df7d7f'}
+  {x: 0, y: 0, z: 0, q: 5192650370358181887n},
+  {x: 1, y: 2, z: 3, q: 5202361257054699519n},
+  {x: 1023, y: 2412, z: 23, q: 5291729562728627583n}
 ];
 
 test('Quadbin conversion', async t => {
   for (const {x, y, z, q} of TEST_TILES) {
     const tile = {x, y, z};
-    const quadbin = tileToQuadbin(tile);
+    const quadbin = tileToCell(tile);
     t.deepEqual(quadbin, q, 'quadbins match');
 
-    const tile2 = quadbinToTile(quadbin);
+    const tile2 = cellToTile(quadbin);
     t.deepEqual(tile, tile2, 'tiles match');
   }
 
@@ -26,10 +26,10 @@ test('Quadbin getParent', async t => {
   const quadkey = tileToQuadkey(tile);
 
   while (tile.z > 0) {
-    const quadbin = tileToQuadbin(tile);
-    const parent = quadbinParent(quadbin);
-    const zoom = quadbinZoom(parent);
-    tile = quadbinToTile(parent);
+    const quadbin = tileToCell(tile);
+    const parent = cellToParent(quadbin);
+    const zoom = getResolution(parent);
+    tile = cellToTile(parent);
     const quadkey2 = tileToQuadkey(tile);
 
     t.deepEquals(quadkey2, quadkey.slice(0, tile.z), `parent correct ${quadkey2}`);
