@@ -17,7 +17,6 @@ cellToParent(5210915457518796799n) // => 5206425052030959615n
 getResolution(hexToBigInt('4830ffffffffffff')) // => 3
 ```
 
-
 _Note: we still need to create the npm module_
 
 # I/O types
@@ -27,8 +26,6 @@ A Quadbin index is a 64-bit integer. This library uses [BigInt](https://develope
 When working with quadbin indices in other contexts (e.g. passing as a parameter in a URL or serializing as JSON), it is more appropriate to encode the index as a hexidecimal string. The library provides the `bigIntToHex()` & `hexToBigInt()` to facilitate this conversion.
 
 # API
-
-_Note: we are attempting to follow the API of h3-js to make this library a drop-in replacement for H3. H3-js is close to releasing a new version (4) [which changes the API](https://h3geo.org/docs/next/library/migration-3.x/functions/). This repo will follow the new conventions set in H3-JS v4_
 
 ## bigIntToHex
 
