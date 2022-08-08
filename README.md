@@ -63,7 +63,7 @@ function cellToParent(quadbin: bigint): bigint
 Calculates the parent cell.
 
 ## tileToCell
-bigint
+
 ```javascript
 function tileToCell(tile: {x: number, y: number, z: number}): bigint
 ```
