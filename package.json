@@ -7,7 +7,6 @@
   "module": "dist/esm/index.js",
   "umd:main": "dist/umd/index.js",
   "types": "dist/types/index.d.js",
-  "private": true,
   "keywords": ["quadbin", "webgl", "visualization"],
   "repository": {
     "type": "git",
