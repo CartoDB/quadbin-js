@@ -1,0 +1,15 @@
+{
+  "name": "MultiPoint",
+  "geometry": {
+    "type": "MultiPoint",
+    "coordinates": [
+      [-3.71219873428345, 40.413365349070865],
+      [-3.7144088745117, 40.40965661286395]
+    ]
+  },
+  "expected": {
+    "0": ["480fffffffffffff"],
+    "10": ["48a3d519ffffffff"],
+    "17": ["4913d5191d03ffff", "4913d5191c5fffff"]
+  }
+}
