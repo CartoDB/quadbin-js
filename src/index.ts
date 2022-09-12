@@ -83,5 +83,9 @@ export function cellToParent(quadbin: Quadbin): Quadbin {
 }
 
 export function geometryToCells(geometry, resolution: bigint): Quadbin[] {
-  return [];
+  const zoom = Number(resolution);
+  return tiles(geometry, {
+    min_zoom: zoom,
+    max_zoom: zoom
+  }).map(([x, y, z]) => tileToCell({x, y, z}));
 }
