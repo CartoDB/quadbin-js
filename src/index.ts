@@ -9,7 +9,7 @@ const B = [
 const S = [0n, 1n, 2n, 4n, 8n, 16n];
 
 type Quadbin = bigint;
-type Tile = {x: number, y: number, z: number};
+type Tile = {x: number; y: number; z: number};
 
 export function hexToBigInt(hex: string): bigint {
   return BigInt(`0x${hex}`);
@@ -78,4 +78,8 @@ export function cellToParent(quadbin: Quadbin): Quadbin {
   const parent =
     (quadbin & ~(0x1fn << 52n)) | (zparent << 52n) | (0xfffffffffffffn >> (zparent * 2n));
   return parent;
+}
+
+export function geometryToCells(geometry, resolution: bigint): Quadbin[] {
+  return [];
 }

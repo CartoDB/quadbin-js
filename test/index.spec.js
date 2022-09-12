@@ -1,5 +1,5 @@
 import test from 'tape';
-import {tileToCell, cellToTile, cellToParent, getResolution} from '../src/index'
+import {tileToCell, cellToTile, cellToParent, geometryToCells, getResolution} from '../src/index';
 import {tileToQuadkey} from './quadkey-utils';
 
 const TEST_TILES = [
@@ -36,5 +36,12 @@ test('Quadbin getParent', async t => {
     t.deepEquals(Number(zoom), tile.z, `zoom correct ${zoom}`);
   }
 
+  t.end();
+});
+
+const GEOMETRY = {type: 'Point', coordinates: [-3.71219873428345, 40.413365349070865]};
+test('Quadbin geometryToCells', async t => {
+  const cells = geometryToCells(GEOMETRY, 0);
+  t.deepEquals(cells, [5192650370358181887n], 'Correct cells generated from geometry');
   t.end();
 });
