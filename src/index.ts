@@ -1,3 +1,5 @@
+import {tiles} from '@mapbox/tile-cover';
+
 const B = [
   0x5555555555555555n,
   0x3333333333333333n,
