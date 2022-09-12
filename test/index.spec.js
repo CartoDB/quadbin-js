@@ -50,7 +50,8 @@ test('Quadbin getParent', async t => {
 import PointGeometry from './data/PointGeometry.json';
 import MultiPointGeometry from './data/MultiPointGeometry.json';
 import LineStringGeometry from './data/LineStringGeometry.json';
-const testCases = [PointGeometry, MultiPointGeometry, LineStringGeometry];
+import MultiLineStringGeometry from './data/MultiLineStringGeometry.json';
+const testCases = [PointGeometry, MultiPointGeometry, LineStringGeometry, MultiLineStringGeometry];
 
 test('Quadbin geometryToCells', async t => {
   for (const {name, geometry, expected} of testCases) {
