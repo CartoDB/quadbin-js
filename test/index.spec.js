@@ -1,5 +1,12 @@
 import test from 'tape';
-import {tileToCell, cellToTile, cellToParent, geometryToCells, getResolution} from '../src/index';
+import {
+  tileToCell,
+  cellToTile,
+  cellToParent,
+  geometryToCells,
+  getResolution,
+  hexToBigInt
+} from '../src/index';
 import {tileToQuadkey} from './quadkey-utils';
 
 const TEST_TILES = [
@@ -39,9 +46,20 @@ test('Quadbin getParent', async t => {
   t.end();
 });
 
-const GEOMETRY = {type: 'Point', coordinates: [-3.71219873428345, 40.413365349070865]};
+// Zoom:26 test not agreeing with Python
+import PointGeometry from './data/PointGeometry.json';
+const testCases = [PointGeometry];
+
 test('Quadbin geometryToCells', async t => {
-  const cells = geometryToCells(GEOMETRY, 0);
-  t.deepEquals(cells, [5192650370358181887n], 'Correct cells generated from geometry');
+  const {name, geometry, expected} = testCases[0];
+  for (const resolution of Object.keys(expected)) {
+    const expectedCells = expected[resolution].map(hexToBigInt);
+    const cells = geometryToCells(geometry, resolution);
+    t.deepEquals(
+      cells,
+      expectedCells,
+      `Correct cells generated from ${name} geometry at resolution ${resolution}`
+    );
+  }
   t.end();
 });
