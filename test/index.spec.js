@@ -64,8 +64,8 @@ const testCases = [
 test('Quadbin geometryToCells', async t => {
   for (const {name, geometry, expected} of testCases) {
     for (const resolution of Object.keys(expected)) {
-      const expectedCells = expected[resolution].map(BigInt);
-      const cells = geometryToCells(geometry, resolution);
+      const expectedCells = expected[resolution].map(BigInt).sort();
+      const cells = geometryToCells(geometry, resolution).sort();
       t.deepEquals(
         cells,
         expectedCells,
