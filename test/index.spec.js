@@ -49,12 +49,13 @@ test('Quadbin getParent', async t => {
 // Zoom:26 test not agreeing with Python
 import PointGeometry from './data/PointGeometry.json';
 import MultiPointGeometry from './data/MultiPointGeometry.json';
-const testCases = [PointGeometry, MultiPointGeometry];
+import LineStringGeometry from './data/LineStringGeometry.json';
+const testCases = [PointGeometry, MultiPointGeometry, LineStringGeometry];
 
 test('Quadbin geometryToCells', async t => {
   for (const {name, geometry, expected} of testCases) {
     for (const resolution of Object.keys(expected)) {
-      const expectedCells = expected[resolution].map(hexToBigInt);
+      const expectedCells = expected[resolution].map(BigInt);
       const cells = geometryToCells(geometry, resolution);
       t.deepEquals(
         cells,
