@@ -17,8 +17,6 @@ cellToParent(5210915457518796799n) // => 5206425052030959615n
 getResolution(hexToBigInt('4830ffffffffffff')) // => 3
 ```
 
-_Note: we still need to create the npm module_
-
 # I/O types
 
 A Quadbin index is a 64-bit integer. This library uses [BigInt](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt) as a data type to represent quadbin indices, both as parameters and return values for functions.
