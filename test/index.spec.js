@@ -1,5 +1,12 @@
 import test from 'tape';
-import {tileToCell, cellToTile, cellToParent, getResolution} from '../src/index'
+import {
+  tileToCell,
+  cellToTile,
+  cellToParent,
+  geometryToCells,
+  getResolution,
+  hexToBigInt
+} from '../src/index';
 import {tileToQuadkey} from './quadkey-utils';
 
 const TEST_TILES = [
@@ -36,5 +43,35 @@ test('Quadbin getParent', async t => {
     t.deepEquals(Number(zoom), tile.z, `zoom correct ${zoom}`);
   }
 
+  t.end();
+});
+
+// Zoom:26 test not agreeing with Python
+import PointGeometry from './data/PointGeometry.json';
+import MultiPointGeometry from './data/MultiPointGeometry.json';
+import LineStringGeometry from './data/LineStringGeometry.json';
+import MultiLineStringGeometry from './data/MultiLineStringGeometry.json';
+import PolygonGeometry from './data/PolygonGeometry.json';
+import MultiPolygonGeometry from './data/MultiPolygonGeometry.json';
+const testCases = [
+  PointGeometry,
+  MultiPointGeometry,
+  LineStringGeometry,
+  PolygonGeometry,
+  MultiPolygonGeometry
+];
+
+test('Quadbin geometryToCells', async t => {
+  for (const {name, geometry, expected} of testCases) {
+    for (const resolution of Object.keys(expected)) {
+      const expectedCells = expected[resolution].map(BigInt).sort();
+      const cells = geometryToCells(geometry, resolution).sort();
+      t.deepEquals(
+        cells,
+        expectedCells,
+        `Correct cells generated from ${name} geometry at resolution ${resolution}`
+      );
+    }
+  }
   t.end();
 });

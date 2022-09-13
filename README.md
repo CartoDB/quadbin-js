@@ -72,3 +72,11 @@ function cellToTile(quadbin: bigint): Tile
 ```
 
 Converts quadbin cell into a xyz tile.
+
+## geometryToCells
+
+```javascript
+function geometryToCells(geometry: GeoJSONGeometry, resolution: bigint): bigint 
+```
+
+Returns a list of cells covering a GeoJSON geometry at a given resolution
