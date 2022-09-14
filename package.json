@@ -1,12 +1,20 @@
 {
   "name": "quadbin",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Utility functions for working with Quadbins",
   "license": "MIT",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "umd:main": "dist/umd/index.js",
   "types": "dist/types/index.d.js",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js",
+      "types": "./dist/types/index.d.ts"
+    },
+    "./*": "./*"
+  },
   "keywords": ["quadbin", "webgl", "visualization"],
   "repository": {
     "type": "git",
