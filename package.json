@@ -1,6 +1,6 @@
 {
   "name": "quadbin",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "description": "Utility functions for working with Quadbins",
   "license": "MIT",
   "main": "dist/cjs/index.js",
@@ -49,9 +49,6 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@mapbox/tile-cover": "^3.0.2"
-  },
-  "resolutions": {
-    "@mapbox/tilebelt": "1.0.1"
+    "@mapbox/tile-cover": "3.0.1"
   }
 }

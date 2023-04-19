@@ -58,17 +58,12 @@
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
 
-"@mapbox/tile-cover@^3.0.2":
-  version "3.0.2"
-  resolved "https://registry.yarnpkg.com/@mapbox/tile-cover/-/tile-cover-3.0.2.tgz#e10b1bbfe65ee28a7f1a0127deb699635d0f8d7a"
-  integrity sha512-A6qvtttsYI66BYi8JMD0v7BzxeuXJf6qSzufmdvvYxDJyXqATZ7ig6OKHFCW7/OsUjpfFu3rB54JM/yHUOVB9g==
+"@mapbox/tile-cover@3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@mapbox/tile-cover/-/tile-cover-3.0.1.tgz#ad0dbe69d02e4e9ff74bf228b3ee8fa533034210"
+  integrity sha512-R8aoFY/87HWBOL9E2eBqzOY2lpfWYXCcTNgBpIxAv67rqQeD4IfnHD0iPXg/Z1cqXrklegEYZCp/7ZR/RsWqBQ==
   dependencies:
-    "@mapbox/tilebelt" "^1.0.1"
-
-"@mapbox/tilebelt@1.0.1", "@mapbox/tilebelt@^1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@mapbox/tilebelt/-/tilebelt-1.0.1.tgz#d57a1c4a5445e928dad720a828389a0a69db8818"
-  integrity sha512-62FkRJcrvxjH4FaqM8ePdK4TM9XcNkghaGlFnbdLbOgjk0FfQ5Pqr3QZkOOpuOLxMRMOsWsZfL3AcffiPCYBJQ==
+    tilebelt "^1.0.1"
 
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"
@@ -1561,6 +1556,11 @@ through@~2.3.4, through@~2.3.8:
   version "2.3.8"
   resolved "https://registry.yarnpkg.com/through/-/through-2.3.8.tgz#0dd4c9ffaabc357960b1b724115d7e0e86a2e1f5"
   integrity sha512-w89qg7PI8wAdvX60bMDP+bFoD5Dvhm9oLheFp5O4a2QF0cSBGsBX4qZmadPMvVqlLJBBci+WqGGOAPvcDeNSVg==
+
+tilebelt@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/tilebelt/-/tilebelt-1.0.1.tgz#3bbf7113b3fec468efb0d9148f4bb71ef126a21a"
+  integrity sha512-cxHzpa5JgsugY9NUVRH43gPaGJw/29LecAn4X7UGOP64+kB8pU4VQ3bIhSyfb5Mk4jDxwl3yk330L/EIhbJ5aw==
 
 to-regex-range@^5.0.1:
   version "5.0.1"
