@@ -65,10 +65,10 @@
   dependencies:
     "@mapbox/tilebelt" "^1.0.1"
 
-"@mapbox/tilebelt@^1.0.1":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@mapbox/tilebelt/-/tilebelt-1.0.2.tgz#32936c3acad3ea3e669bb083a598bcc7d74b4ec9"
-  integrity sha512-tGJN2VIgWrXqBTPIxFVklklIpcy6ss8W5ouq+cjNLXPXFraRaDR4Ice+5Q8/uLX+6aH23lWBMydOIn8PcdVcpA==
+"@mapbox/tilebelt@1.0.1", "@mapbox/tilebelt@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@mapbox/tilebelt/-/tilebelt-1.0.1.tgz#d57a1c4a5445e928dad720a828389a0a69db8818"
+  integrity sha512-62FkRJcrvxjH4FaqM8ePdK4TM9XcNkghaGlFnbdLbOgjk0FfQ5Pqr3QZkOOpuOLxMRMOsWsZfL3AcffiPCYBJQ==
 
 "@types/eslint-scope@^3.7.3":
   version "3.7.4"

@@ -52,12 +52,14 @@ import MultiPointGeometry from './data/MultiPointGeometry.json';
 import LineStringGeometry from './data/LineStringGeometry.json';
 import MultiLineStringGeometry from './data/MultiLineStringGeometry.json';
 import PolygonGeometry from './data/PolygonGeometry.json';
+import PolygonAntimeridianGeometry from './data/PolygonAntimeridianGeometry.json';
 import MultiPolygonGeometry from './data/MultiPolygonGeometry.json';
 const testCases = [
   PointGeometry,
   MultiPointGeometry,
   LineStringGeometry,
   PolygonGeometry,
+  PolygonAntimeridianGeometry,
   MultiPolygonGeometry
 ];
 
