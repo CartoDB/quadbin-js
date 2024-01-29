@@ -33,7 +33,7 @@
     "build:types": "tsc -p tsconfig/tsconfig.types.json",
     "build:umd": "webpack --config tsconfig/webpack.config.cjs",
     "lint": "npx prettier --check src",
-    "test": "yarn build && yarn lint && yarn test-fast",
+    "test": "yarn lint && yarn test-fast",
     "test-fast": "npx ts-node node_modules/tape/bin/tape test/**/*.spec.js"
   },
   "browser": {
