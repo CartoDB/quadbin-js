@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es2020",
-    "jsx": "react",
+    "target": "es2022",
     "strict": true,
     "noImplicitAny": false,
     "allowJs": true,
@@ -14,12 +13,10 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "test": ["test"]
+      "test": ["test"],
+      "quadbin": ["src"]
     }
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-  ]
+  "include": ["src"],
+  "exclude": []
 }

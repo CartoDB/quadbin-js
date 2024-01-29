@@ -6,8 +6,9 @@ import {
   geometryToCells,
   getResolution,
   hexToBigInt
-} from '../src/index';
-import {tileToQuadkey} from './quadkey-utils';
+} from 'quadbin';
+
+import {tileToQuadkey} from './quadkey-utils.js';
 
 const TEST_TILES = [
   {x: 0, y: 0, z: 0, q: 5192650370358181887n},
@@ -47,13 +48,13 @@ test('Quadbin getParent', async t => {
 });
 
 // Zoom:26 test not agreeing with Python
-import PointGeometry from './data/PointGeometry.json';
-import MultiPointGeometry from './data/MultiPointGeometry.json';
-import LineStringGeometry from './data/LineStringGeometry.json';
-import MultiLineStringGeometry from './data/MultiLineStringGeometry.json';
-import PolygonGeometry from './data/PolygonGeometry.json';
-import PolygonAntimeridianGeometry from './data/PolygonAntimeridianGeometry.json';
-import MultiPolygonGeometry from './data/MultiPolygonGeometry.json';
+import PointGeometry from './data/PointGeometry.json' assert {type: 'json'};
+import MultiPointGeometry from './data/MultiPointGeometry.json' assert {type: 'json'};
+import LineStringGeometry from './data/LineStringGeometry.json' assert {type: 'json'};
+import MultiLineStringGeometry from './data/MultiLineStringGeometry.json' assert {type: 'json'};
+import PolygonGeometry from './data/PolygonGeometry.json' assert {type: 'json'};
+import PolygonAntimeridianGeometry from './data/PolygonAntimeridianGeometry.json' assert {type: 'json'};
+import MultiPolygonGeometry from './data/MultiPolygonGeometry.json' assert {type: 'json'};
 const testCases = [
   PointGeometry,
   MultiPointGeometry,
