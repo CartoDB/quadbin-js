@@ -3,19 +3,24 @@
   "version": "0.1.9",
   "description": "Utility functions for working with Quadbins",
   "license": "MIT",
+  "type": "module",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "umd:main": "dist/umd/index.js",
-  "types": "dist/types/index.d.js",
+  "types": "dist/types/index.d.ts",
   "exports": {
     ".": {
+      "types": "./dist/types/index.d.ts",
       "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/types/index.d.ts"
+      "require": "./dist/cjs/index.js"
     },
     "./*": "./*"
   },
-  "keywords": ["quadbin", "webgl", "visualization"],
+  "keywords": [
+    "quadbin",
+    "webgl",
+    "visualization"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/CartoDB/quadbin-js.git"
