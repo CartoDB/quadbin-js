@@ -1,6 +1,6 @@
 {
   "name": "quadbin",
-  "version": "0.1.9",
+  "version": "0.2.0",
   "description": "Utility functions for working with Quadbins",
   "license": "MIT",
   "type": "module",
