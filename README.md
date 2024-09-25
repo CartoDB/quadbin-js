@@ -79,4 +79,10 @@ Converts quadbin cell into a xyz tile.
 function geometryToCells(geometry: GeoJSONGeometry, resolution: bigint): bigint 
 ```
 
-Returns a list of cells covering a GeoJSON geometry at a given resolution
+## quadbinToBoundary
+
+```javascript
+function quadbinToBoundary(quadbin: bigint): GeoJSONGeometry 
+```
+
+Converts a Quadbin cell identifier into a geographical boundary represented as a polygon

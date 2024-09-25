@@ -13,6 +13,27 @@ const S = [0n, 1n, 2n, 4n, 8n, 16n];
 type Quadbin = bigint;
 type Tile = {x: number; y: number; z: number};
 
+function cellToBoundingBox(cell: bigint) {
+  const tile = cellToTile(cell);
+  const xmin = tileToLongitude(tile, 0);
+  const xmax = tileToLongitude(tile, 1);
+  const ymin = tileToLatitude(tile, 1);
+  const ymax = tileToLatitude(tile, 0);
+
+  return [xmin, ymin, xmax, ymax];
+}
+
+function tileToLongitude(tile: ReturnType<typeof cellToTile>, offset: number) {
+  const {x, z} = tile;
+  return 180 * ((2.0 * (x + offset)) / (1 << z) - 1.0);
+}
+
+function tileToLatitude(tile: ReturnType<typeof cellToTile>, offset: number) {
+  const {y, z} = tile;
+  const expy = Math.exp(-((2.0 * (y + offset)) / (1 << z) - 1) * Math.PI);
+  return 360 * (Math.atan(expy) / Math.PI - 0.25);
+}
+
 export function hexToBigInt(hex: string): bigint {
   return BigInt(`0x${hex}`);
 }
@@ -88,4 +109,17 @@ export function geometryToCells(geometry, resolution: bigint): Quadbin[] {
     min_zoom: zoom,
     max_zoom: zoom
   }).map(([x, y, z]) => tileToCell({x, y, z}));
+}
+
+export function quadbinToBoundary(cell: bigint) {
+  const bbox = cellToBoundingBox(cell);
+  const boundary = [
+    [bbox[0], bbox[3]],
+    [bbox[0], bbox[1]],
+    [bbox[2], bbox[1]],
+    [bbox[2], bbox[3]],
+    [bbox[0], bbox[3]]
+  ];
+
+  return {type: 'Polygon', coordinates: [boundary]};
 }

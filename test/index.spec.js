@@ -1,12 +1,5 @@
 import test from 'tape';
-import {
-  tileToCell,
-  cellToTile,
-  cellToParent,
-  geometryToCells,
-  getResolution,
-  hexToBigInt
-} from 'quadbin';
+import {tileToCell, cellToTile, cellToParent, geometryToCells, getResolution} from 'quadbin';
 
 import {tileToQuadkey} from './quadkey-utils.js';
 
@@ -51,7 +44,6 @@ test('Quadbin getParent', async t => {
 import PointGeometry from './data/PointGeometry.json' assert {type: 'json'};
 import MultiPointGeometry from './data/MultiPointGeometry.json' assert {type: 'json'};
 import LineStringGeometry from './data/LineStringGeometry.json' assert {type: 'json'};
-import MultiLineStringGeometry from './data/MultiLineStringGeometry.json' assert {type: 'json'};
 import PolygonGeometry from './data/PolygonGeometry.json' assert {type: 'json'};
 import PolygonAntimeridianGeometry from './data/PolygonAntimeridianGeometry.json' assert {type: 'json'};
 import MultiPolygonGeometry from './data/MultiPolygonGeometry.json' assert {type: 'json'};
