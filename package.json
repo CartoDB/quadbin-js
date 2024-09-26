@@ -54,14 +54,14 @@
     "webpack-cli": "^4.8.0"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=14"
   },
   "dependencies": {
     "@mapbox/tile-cover": "3.0.1"
   },
   "packageManager": "yarn@1.22.22",
   "volta": {
-    "node": "18.19.0",
+    "node": "14.21.3",
     "yarn": "1.22.22"
   }
 }
