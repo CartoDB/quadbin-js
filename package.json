@@ -34,13 +34,15 @@
     "build:umd": "webpack --config tsconfig/webpack.config.cjs",
     "lint": "prettier --check src",
     "test": "yarn lint && yarn test-fast",
-    "test-fast": "ts-node node_modules/tape/bin/tape test/**/*.spec.js"
+    "test-fast": "ts-node node_modules/tape/bin/tape test/**/*.spec.js",
+    "prepublishOnly": "yarn build"
   },
   "browser": {
     "jsdom": false
   },
   "devDependencies": {
     "@babel/register": "^7.13.0",
+    "@types/geojson": "^7946.0.14",
     "babel-loader": "^8.0.0",
     "babel-preset-minify": "^0.5.0",
     "prettier": "^2.4.1",
@@ -52,10 +54,14 @@
     "webpack-cli": "^4.8.0"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
   "dependencies": {
     "@mapbox/tile-cover": "3.0.1"
   },
-  "packageManager": "yarn@1.22.22"
+  "packageManager": "yarn@1.22.22",
+  "volta": {
+    "node": "18.19.0",
+    "yarn": "1.22.22"
+  }
 }

@@ -1,5 +1,12 @@
 import test from 'tape';
-import {tileToCell, cellToTile, cellToParent, geometryToCells, getResolution} from 'quadbin';
+import {
+  tileToCell,
+  cellToTile,
+  cellToParent,
+  geometryToCells,
+  getResolution,
+  cellToBoundary
+} from 'quadbin';
 
 import {tileToQuadkey} from './quadkey-utils.js';
 
@@ -8,6 +15,8 @@ const TEST_TILES = [
   {x: 1, y: 2, z: 3, q: 5202361257054699519n},
   {x: 1023, y: 2412, z: 23, q: 5291729562728627583n}
 ];
+
+const ANY_QUADBIN = BigInt(524800);
 
 test('Quadbin conversion', async t => {
   for (const {x, y, z, q} of TEST_TILES) {
@@ -68,5 +77,34 @@ test('Quadbin geometryToCells', async t => {
       );
     }
   }
+  t.end();
+});
+
+test('cellToBoundary works with quadbins', t => {
+  const result = cellToBoundary(ANY_QUADBIN);
+
+  t.equal(result.type, 'Polygon', 'Should return a Polygon');
+  t.ok(Array.isArray(result.coordinates), 'Coordinates should be an array');
+  t.equal(result.coordinates.length, 1, 'Should have one boundary array');
+
+  t.ok(result.coordinates[0].length === 5, 'Boundary should have 5 points');
+
+  t.end();
+});
+
+test('cellToBoundary works with Quadbins near the antimeridian', t => {
+  for (const quadbin of [
+    BigInt(536903670), // Longitude near +180°
+    BigInt(536870921) // Longitude near -180°
+  ]) {
+    const result = cellToBoundary(quadbin);
+
+    t.equal(result.type, 'Polygon', 'Should return a Polygon');
+    t.ok(
+      result.coordinates[0][0][0] > 170 || result.coordinates[0][0][0] < -170,
+      'Longitude should be near the antimeridian'
+    );
+  }
+
   t.end();
 });

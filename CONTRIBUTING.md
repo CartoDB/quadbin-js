@@ -21,6 +21,4 @@ yarn test
 
 1. Create a new version: `yarn version [ major | minor | patch | prerelease ]`
 
-2. Commit, tag, and push to GitHub: `yarn postversion`
-
-3. Execute `yarn publish`
+2. Execute `yarn publish`
