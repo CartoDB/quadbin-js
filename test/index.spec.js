@@ -80,30 +80,56 @@ test('Quadbin geometryToCells', async t => {
   t.end();
 });
 
-test('cellToBoundary works with quadbins', t => {
-  const result = cellToBoundary(ANY_QUADBIN);
-
-  t.equal(result.type, 'Polygon', 'Should return a Polygon');
-  t.ok(Array.isArray(result.coordinates), 'Coordinates should be an array');
-  t.equal(result.coordinates.length, 1, 'Should have one boundary array');
-
-  t.ok(result.coordinates[0].length === 5, 'Boundary should have 5 points');
-
-  t.end();
-});
-
-test('cellToBoundary works with Quadbins near the antimeridian', t => {
-  for (const quadbin of [
-    BigInt(536903670), // Longitude near +180°
-    BigInt(536870921) // Longitude near -180°
+test('Quadbin cellToBoundary', t => {
+  for (const {quadbin, expectedPolygon} of [
+    {
+      quadbin: BigInt(524800),
+      expectedPolygon: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [180, 85.0511287798066],
+            [180, -85.05112877980659],
+            [-180, -85.05112877980659],
+            [-180, 85.0511287798066],
+            [180, 85.0511287798066]
+          ]
+        ]
+      }
+    },
+    {
+      quadbin: BigInt(536903670), // Longitude near +180°
+      expectedPolygon: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [180, 85.0511287798066],
+            [180, -85.05112877980659],
+            [-180, -85.05112877980659],
+            [-180, 85.0511287798066],
+            [180, 85.0511287798066]
+          ]
+        ]
+      }
+    },
+    {
+      quadbin: BigInt(536870921), // Longitude near -180°
+      expectedPolygon: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [180, 85.0511287798066],
+            [180, -85.05112877980659],
+            [-180, -85.05112877980659],
+            [-180, 85.0511287798066],
+            [180, 85.0511287798066]
+          ]
+        ]
+      }
+    }
   ]) {
     const result = cellToBoundary(quadbin);
-
-    t.equal(result.type, 'Polygon', 'Should return a Polygon');
-    t.ok(
-      result.coordinates[0][0][0] > 170 || result.coordinates[0][0][0] < -170,
-      'Longitude should be near the antimeridian'
-    );
+    t.deepEquals(result, expectedPolygon);
   }
 
   t.end();

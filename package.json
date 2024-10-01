@@ -57,7 +57,8 @@
     "node": ">=14"
   },
   "dependencies": {
-    "@mapbox/tile-cover": "3.0.1"
+    "@mapbox/tile-cover": "3.0.1",
+    "@math.gl/web-mercator": "^4.1.0"
   },
   "packageManager": "yarn@1.22.22",
   "volta": {

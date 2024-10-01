@@ -1,4 +1,5 @@
 import {tiles} from '@mapbox/tile-cover';
+import {worldToLngLat} from '@math.gl/web-mercator';
 import type {Polygon} from 'geojson';
 
 const B = [
@@ -14,25 +15,27 @@ const S = [0n, 1n, 2n, 4n, 8n, 16n];
 type Quadbin = bigint;
 type Tile = {x: number; y: number; z: number};
 
-function tileToLongitude(tile: ReturnType<typeof cellToTile>, offset: number) {
-  const {x, z} = tile;
-  return 180 * ((2.0 * (x + offset)) / (1 << z) - 1.0);
+const TILE_SIZE = 512;
+
+function quadbinToOffset(quadbin: bigint): [number, number, number] {
+  const {x, y, z} = cellToTile(quadbin);
+  const scale = TILE_SIZE / (1 << z);
+  return [x * scale, TILE_SIZE - y * scale, scale];
 }
 
-function tileToLatitude(tile: ReturnType<typeof cellToTile>, offset: number) {
-  const {y, z} = tile;
-  const expy = Math.exp(-((2.0 * (y + offset)) / (1 << z) - 1) * Math.PI);
-  return 360 * (Math.atan(expy) / Math.PI - 0.25);
+function quadbinToWorldBounds(quadbin: bigint, coverage: number): [number[], number[]] {
+  const [xOffset, yOffset, scale] = quadbinToOffset(quadbin);
+  return [
+    [xOffset, yOffset],
+    [xOffset + coverage * scale, yOffset - coverage * scale]
+  ];
 }
 
-function cellToBoundingBox(cell: bigint) {
-  const tile = cellToTile(cell);
-  const xmin = tileToLongitude(tile, 0);
-  const xmax = tileToLongitude(tile, 1);
-  const ymin = tileToLatitude(tile, 1);
-  const ymax = tileToLatitude(tile, 0);
-
-  return [xmin, ymin, xmax, ymax];
+function getQuadbinPolygon(quadbin: bigint, coverage = 1): number[] {
+  const [topLeft, bottomRight] = quadbinToWorldBounds(quadbin, coverage);
+  const [w, n] = worldToLngLat(topLeft);
+  const [e, s] = worldToLngLat(bottomRight);
+  return [e, n, e, s, w, s, w, n, e, n];
 }
 
 export function hexToBigInt(hex: string): bigint {
@@ -113,13 +116,13 @@ export function geometryToCells(geometry, resolution: bigint): Quadbin[] {
 }
 
 export function cellToBoundary(cell: bigint): Polygon {
-  const bbox = cellToBoundingBox(cell);
+  const bbox = getQuadbinPolygon(cell);
   const boundary = [
-    [bbox[0], bbox[3]],
     [bbox[0], bbox[1]],
-    [bbox[2], bbox[1]],
     [bbox[2], bbox[3]],
-    [bbox[0], bbox[3]]
+    [bbox[4], bbox[5]],
+    [bbox[6], bbox[7]],
+    [bbox[0], bbox[1]]
   ];
 
   return {type: 'Polygon', coordinates: [boundary]};
