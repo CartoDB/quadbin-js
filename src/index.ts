@@ -1,5 +1,5 @@
 import {tiles} from '@mapbox/tile-cover';
-import {Polygon} from 'geojson';
+import type {Polygon} from 'geojson';
 
 const B = [
   0x5555555555555555n,
