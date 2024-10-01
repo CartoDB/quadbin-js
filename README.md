@@ -82,7 +82,31 @@ function geometryToCells(geometry: GeoJSONGeometry, resolution: bigint): bigint
 ## cellToBoundary
 
 ```javascript
-function cellToBoundary(quadbin: bigint): GeoJSONGeometry 
+function cellToBoundary(quadbin: bigint): Polygon 
 ```
 
 Converts a Quadbin cell identifier into a geographical boundary represented as a polygon
+
+## quadbinToOffset
+
+```javascript
+function quadbinToOffset(quadbin: bigint): [number, number, number]
+```
+
+Converts a Quadbin cell identifier into world coordinates offset values
+
+## quadbinToWorldBounds
+
+```javascript
+function quadbinToWorldBounds(quadbin: bigint, coverage: number): [number[], number[]]
+```
+
+Computes the world bounds (in Web Mercator coordinates) for a given Quadbin cell, taking into account the cell's coverage area
+
+## getQuadbinPolygon
+
+```javascript
+function getQuadbinPolygon(quadbin: bigint, coverage = 1): number[]
+```
+
+Generates the geographical polygon (in longitude and latitude) that represents the boundaries of a Quadbin cell, optionally taking into account coverage

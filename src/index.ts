@@ -17,13 +17,13 @@ type Tile = {x: number; y: number; z: number};
 
 const TILE_SIZE = 512;
 
-function quadbinToOffset(quadbin: bigint): [number, number, number] {
+export function quadbinToOffset(quadbin: bigint): [number, number, number] {
   const {x, y, z} = cellToTile(quadbin);
   const scale = TILE_SIZE / (1 << z);
   return [x * scale, TILE_SIZE - y * scale, scale];
 }
 
-function quadbinToWorldBounds(quadbin: bigint, coverage: number): [number[], number[]] {
+export function quadbinToWorldBounds(quadbin: bigint, coverage: number): [number[], number[]] {
   const [xOffset, yOffset, scale] = quadbinToOffset(quadbin);
   return [
     [xOffset, yOffset],
@@ -31,7 +31,7 @@ function quadbinToWorldBounds(quadbin: bigint, coverage: number): [number[], num
   ];
 }
 
-function getQuadbinPolygon(quadbin: bigint, coverage = 1): number[] {
+export function getQuadbinPolygon(quadbin: bigint, coverage = 1): number[] {
   const [topLeft, bottomRight] = quadbinToWorldBounds(quadbin, coverage);
   const [w, n] = worldToLngLat(topLeft);
   const [e, s] = worldToLngLat(bottomRight);
