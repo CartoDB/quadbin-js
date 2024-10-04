@@ -17,22 +17,22 @@ type Tile = {x: number; y: number; z: number};
 
 const TILE_SIZE = 512;
 
-export function quadbinToOffset(quadbin: bigint): [number, number, number] {
+export function cellToOffset(quadbin: Quadbin): [number, number, number] {
   const {x, y, z} = cellToTile(quadbin);
   const scale = TILE_SIZE / (1 << z);
   return [x * scale, TILE_SIZE - y * scale, scale];
 }
 
-export function quadbinToWorldBounds(quadbin: bigint, coverage: number): [number[], number[]] {
-  const [xOffset, yOffset, scale] = quadbinToOffset(quadbin);
+export function cellToWorldBounds(quadbin: Quadbin, coverage: number): [number[], number[]] {
+  const [xOffset, yOffset, scale] = cellToOffset(quadbin);
   return [
     [xOffset, yOffset],
     [xOffset + coverage * scale, yOffset - coverage * scale]
   ];
 }
 
-export function getQuadbinPolygon(quadbin: bigint, coverage = 1): number[] {
-  const [topLeft, bottomRight] = quadbinToWorldBounds(quadbin, coverage);
+export function getCellPolygon(quadbin: Quadbin, coverage = 1): number[] {
+  const [topLeft, bottomRight] = cellToWorldBounds(quadbin, coverage);
   const [w, n] = worldToLngLat(topLeft);
   const [e, s] = worldToLngLat(bottomRight);
   return [e, n, e, s, w, s, w, n, e, n];
@@ -115,8 +115,8 @@ export function geometryToCells(geometry, resolution: bigint): Quadbin[] {
   }).map(([x, y, z]) => tileToCell({x, y, z}));
 }
 
-export function cellToBoundary(cell: bigint): Polygon {
-  const bbox = getQuadbinPolygon(cell);
+export function cellToBoundary(cell: Quadbin): Polygon {
+  const bbox = getCellPolygon(cell);
   const boundary = [
     [bbox[0], bbox[1]],
     [bbox[2], bbox[3]],
