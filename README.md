@@ -79,4 +79,34 @@ Converts quadbin cell into a xyz tile.
 function geometryToCells(geometry: GeoJSONGeometry, resolution: bigint): bigint 
 ```
 
-Returns a list of cells covering a GeoJSON geometry at a given resolution
+## cellToBoundary
+
+```javascript
+function cellToBoundary(quadbin: Quadbin): Polygon 
+```
+
+Converts a Quadbin cell identifier into a geographical boundary represented as a polygon
+
+## cellToOffset
+
+```javascript
+function cellToOffset(quadbin: Quadbin): [number, number, number]
+```
+
+Converts a Quadbin cell identifier into world coordinates offset values
+
+## cellToWorldBounds
+
+```javascript
+function cellToWorldBounds(quadbin: Quadbin, coverage: number): [number[], number[]]
+```
+
+Computes the world bounds (in Web Mercator coordinates) for a given Quadbin cell, taking into account the cell's coverage area
+
+## getCellPolygon
+
+```javascript
+function getCellPolygon(quadbin: Quadbin, coverage = 1): number[]
+```
+
+Generates the geographical polygon (in longitude and latitude) that represents the boundaries of a Quadbin cell, optionally taking into account coverage

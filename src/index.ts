@@ -1,4 +1,6 @@
 import {tiles} from '@mapbox/tile-cover';
+import {worldToLngLat} from '@math.gl/web-mercator';
+import type {Polygon} from 'geojson';
 
 const B = [
   0x5555555555555555n,
@@ -12,6 +14,29 @@ const S = [0n, 1n, 2n, 4n, 8n, 16n];
 
 type Quadbin = bigint;
 type Tile = {x: number; y: number; z: number};
+
+const TILE_SIZE = 512;
+
+export function cellToOffset(quadbin: Quadbin): [number, number, number] {
+  const {x, y, z} = cellToTile(quadbin);
+  const scale = TILE_SIZE / (1 << z);
+  return [x * scale, TILE_SIZE - y * scale, scale];
+}
+
+export function cellToWorldBounds(quadbin: Quadbin, coverage: number): [number[], number[]] {
+  const [xOffset, yOffset, scale] = cellToOffset(quadbin);
+  return [
+    [xOffset, yOffset],
+    [xOffset + coverage * scale, yOffset - coverage * scale]
+  ];
+}
+
+export function getCellPolygon(quadbin: Quadbin, coverage = 1): number[] {
+  const [topLeft, bottomRight] = cellToWorldBounds(quadbin, coverage);
+  const [w, n] = worldToLngLat(topLeft);
+  const [e, s] = worldToLngLat(bottomRight);
+  return [e, n, e, s, w, s, w, n, e, n];
+}
 
 export function hexToBigInt(hex: string): bigint {
   return BigInt(`0x${hex}`);
@@ -88,4 +113,17 @@ export function geometryToCells(geometry, resolution: bigint): Quadbin[] {
     min_zoom: zoom,
     max_zoom: zoom
   }).map(([x, y, z]) => tileToCell({x, y, z}));
+}
+
+export function cellToBoundary(cell: Quadbin): Polygon {
+  const bbox = getCellPolygon(cell);
+  const boundary = [
+    [bbox[0], bbox[1]],
+    [bbox[2], bbox[3]],
+    [bbox[4], bbox[5]],
+    [bbox[6], bbox[7]],
+    [bbox[0], bbox[1]]
+  ];
+
+  return {type: 'Polygon', coordinates: [boundary]};
 }

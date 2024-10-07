@@ -5,7 +5,7 @@ import {
   cellToParent,
   geometryToCells,
   getResolution,
-  hexToBigInt
+  cellToBoundary
 } from 'quadbin';
 
 import {tileToQuadkey} from './quadkey-utils.js';
@@ -15,6 +15,8 @@ const TEST_TILES = [
   {x: 1, y: 2, z: 3, q: 5202361257054699519n},
   {x: 1023, y: 2412, z: 23, q: 5291729562728627583n}
 ];
+
+const ANY_QUADBIN = BigInt(524800);
 
 test('Quadbin conversion', async t => {
   for (const {x, y, z, q} of TEST_TILES) {
@@ -51,7 +53,6 @@ test('Quadbin getParent', async t => {
 import PointGeometry from './data/PointGeometry.json' assert {type: 'json'};
 import MultiPointGeometry from './data/MultiPointGeometry.json' assert {type: 'json'};
 import LineStringGeometry from './data/LineStringGeometry.json' assert {type: 'json'};
-import MultiLineStringGeometry from './data/MultiLineStringGeometry.json' assert {type: 'json'};
 import PolygonGeometry from './data/PolygonGeometry.json' assert {type: 'json'};
 import PolygonAntimeridianGeometry from './data/PolygonAntimeridianGeometry.json' assert {type: 'json'};
 import MultiPolygonGeometry from './data/MultiPolygonGeometry.json' assert {type: 'json'};
@@ -76,5 +77,60 @@ test('Quadbin geometryToCells', async t => {
       );
     }
   }
+  t.end();
+});
+
+test('Quadbin cellToBoundary', t => {
+  for (const {quadbin, expectedPolygon} of [
+    {
+      quadbin: BigInt(524800),
+      expectedPolygon: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [180, 85.0511287798066],
+            [180, -85.05112877980659],
+            [-180, -85.05112877980659],
+            [-180, 85.0511287798066],
+            [180, 85.0511287798066]
+          ]
+        ]
+      }
+    },
+    {
+      quadbin: BigInt(536903670), // Longitude near +180°
+      expectedPolygon: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [180, 85.0511287798066],
+            [180, -85.05112877980659],
+            [-180, -85.05112877980659],
+            [-180, 85.0511287798066],
+            [180, 85.0511287798066]
+          ]
+        ]
+      }
+    },
+    {
+      quadbin: BigInt(536870921), // Longitude near -180°
+      expectedPolygon: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [180, 85.0511287798066],
+            [180, -85.05112877980659],
+            [-180, -85.05112877980659],
+            [-180, 85.0511287798066],
+            [180, 85.0511287798066]
+          ]
+        ]
+      }
+    }
+  ]) {
+    const result = cellToBoundary(quadbin);
+    t.deepEquals(result, expectedPolygon);
+  }
+
   t.end();
 });
