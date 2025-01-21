@@ -27,13 +27,18 @@
     "url": "https://github.com/CartoDB/quadbin-js.git"
   },
   "scripts": {
-    "clean": "rm -rf dist/*",
-    "build": "yarn clean && microbundle --name quadbin --format cjs,modern,umd --no-compress",
+    "clean": "rm -rf \"dist/*\"",
+    "build": "microbundle --name quadbin --format cjs,modern,umd --no-compress",
     "build:watch": "microbundle watch --name quadbin --format cjs,modern,umd --no-compress",
     "lint": "prettier --check src",
     "test": "yarn lint && yarn test-fast",
     "test-fast": "tsx node_modules/tape/bin/tape test/**/*.spec.js",
-    "prepublishOnly": "yarn build"
+    "postversion": "yarn postversion:check && yarn postversion:commit && yarn postversion:push",
+    "postversion:check": "yarn lint && yarn test",
+    "postversion:commit": "node scripts/postversion-commit.js",
+    "postversion:push": "git push && git push --tags",
+    "prepublish": "yarn lint && yarn test",
+    "prepack": "yarn clean && yarn build"
   },
   "browser": {
     "jsdom": false

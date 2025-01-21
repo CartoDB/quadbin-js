@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+env:
+  CI: true
+
+jobs:
+  ##########################################################################
+  # Build
+  ##########################################################################
+
+  build:
+    name: Build [Node.js ${{ matrix.node-version }}]
+    runs-on: ubuntu-22.04
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x, 22.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install
+        run: |
+          corepack enable
+          yarn install
+
+      - name: Lint
+        run: yarn lint
+
+      - name: Build
+        run: yarn build
+
+      - name: Test
+        run: yarn test
+
+  ##########################################################################
+  # Release precheck
+  ##########################################################################
+
+  release_precheck:
+    name: 'Release (precheck)'
+    needs: build
+    if: |
+      github.ref_name == 'main' &&
+      startsWith(github.event.head_commit.message, 'chore(release)')
+    uses: ./.github/workflows/release.yml
+    secrets: inherit
