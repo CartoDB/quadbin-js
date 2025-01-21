@@ -27,7 +27,8 @@ jobs:
 
     - name: Install dependencies
       run: |
-        yarn
+        corepack enable
+        yarn install
         yarn build
 
     - name: Run tests
