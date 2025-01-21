@@ -107,6 +107,29 @@ export function cellToParent(quadbin: Quadbin): Quadbin {
   return parent;
 }
 
+export function cellToChildren(quadbin: Quadbin, resolution: bigint): Quadbin[] {
+  if (resolution < 0 || resolution > 26 || resolution < getResolution(quadbin)) {
+    throw new Error('Invalid resolution');
+  }
+
+  const zoomLevelMask = ~(0x1fn << 52n);
+  const blockRange = 1n << ((resolution - ((quadbin >> 52n) & 0x1fn)) << 1n);
+  const sqrtBlockRange = 1n << (resolution - ((quadbin >> 52n) & 0x1fn));
+  const blockShift = 52n - (resolution << 1n);
+
+  const childBase =
+    ((quadbin & zoomLevelMask) | (resolution << 52n)) & ~((blockRange - 1n) << blockShift);
+
+  const children: Quadbin[] = [];
+  for (let blockRow = 0n; blockRow < sqrtBlockRange; blockRow++) {
+    for (let blockColumn = 0n; blockColumn < sqrtBlockRange; blockColumn++) {
+      children.push(childBase | ((blockRow * sqrtBlockRange + blockColumn) << blockShift));
+    }
+  }
+
+  return children;
+}
+
 export function geometryToCells(geometry, resolution: bigint): Quadbin[] {
   const zoom = Number(resolution);
   return tiles(geometry, {

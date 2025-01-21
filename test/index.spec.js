@@ -1,11 +1,13 @@
 import test from 'tape';
 import {
+  cellToBoundary,
   tileToCell,
+  cellToChildren,
   cellToTile,
   cellToParent,
   geometryToCells,
   getResolution,
-  cellToBoundary
+  hexToBigInt
 } from 'quadbin';
 
 import {tileToQuadkey} from './quadkey-utils.js';
@@ -46,6 +48,18 @@ test('Quadbin getParent', async t => {
     t.deepEquals(Number(zoom), tile.z, `zoom correct ${zoom}`);
   }
 
+  t.end();
+});
+
+test('Quadbin getChildren', async t => {
+  const parent = 5224972163924099071n; // res=8
+  t.deepEquals(cellToChildren(parent, 8n), [parent], 'children at resolution + 0');
+  t.deepEquals(
+    cellToChildren(parent, 9n),
+    [5229475712011862015n, 5229475729191731199n, 5229475746371600383n, 5229475763551469567n],
+    'children at resolution + 1'
+  );
+  t.deepEquals(cellToChildren(parent, 10n).length, 16, 'children at resolution + 2');
   t.end();
 });
 
