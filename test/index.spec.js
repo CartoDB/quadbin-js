@@ -52,14 +52,25 @@ test('Quadbin cellToParent', async t => {
 });
 
 test('Quadbin cellToChildren', async t => {
-  const parent = 5224972163924099071n; // res=8
+  const parentTile = { z: 8, x: 59, y: 97 };
+  const parent = tileToCell(parentTile);
+
   t.deepEquals(cellToChildren(parent, 8n), [parent], 'children at resolution + 0');
+
+  // Order is row major, starting from NW and ending at SE.
   t.deepEquals(
-    cellToChildren(parent, 9n),
-    [5229475712011862015n, 5229475729191731199n, 5229475746371600383n, 5229475763551469567n],
+    cellToChildren(parent, 9n).map(cellToTile),
+    [
+      { z: 9, x: 118, y: 194 }, // nw
+      { z: 9, x: 119, y: 194 }, // ne
+      { z: 9, x: 118, y: 195 }, // sw
+      { z: 9, x: 119, y: 195 }  // se
+    ],
     'children at resolution + 1'
   );
+
   t.deepEquals(cellToChildren(parent, 10n).length, 16, 'children at resolution + 2');
+
   t.end();
 });
 

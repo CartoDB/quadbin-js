@@ -107,6 +107,9 @@ export function cellToParent(quadbin: Quadbin): Quadbin {
   return parent;
 }
 
+/**
+ * Returns the children of a cell, in row-major order starting from NW and ending at SE.
+ */
 export function cellToChildren(quadbin: Quadbin, resolution: bigint): Quadbin[] {
   if (resolution < 0 || resolution > 26 || resolution < getResolution(quadbin)) {
     throw new Error('Invalid resolution');
