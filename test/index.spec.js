@@ -33,7 +33,7 @@ test('Quadbin conversion', async t => {
   t.end();
 });
 
-test('Quadbin getParent', async t => {
+test('Quadbin cellToParent', async t => {
   let tile = {x: 134, y: 1238, z: 10};
   const quadkey = tileToQuadkey(tile);
 
@@ -51,7 +51,7 @@ test('Quadbin getParent', async t => {
   t.end();
 });
 
-test('Quadbin getChildren', async t => {
+test('Quadbin cellToChildren', async t => {
   const parent = 5224972163924099071n; // res=8
   t.deepEquals(cellToChildren(parent, 8n), [parent], 'children at resolution + 0');
   t.deepEquals(
