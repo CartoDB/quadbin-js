@@ -1,11 +1,13 @@
 import test from 'tape';
 import {
+  cellToBoundary,
   tileToCell,
+  cellToChildren,
   cellToTile,
   cellToParent,
   geometryToCells,
   getResolution,
-  cellToBoundary
+  hexToBigInt
 } from 'quadbin';
 
 import {tileToQuadkey} from './quadkey-utils.js';
@@ -31,7 +33,7 @@ test('Quadbin conversion', async t => {
   t.end();
 });
 
-test('Quadbin getParent', async t => {
+test('Quadbin cellToParent', async t => {
   let tile = {x: 134, y: 1238, z: 10};
   const quadkey = tileToQuadkey(tile);
 
@@ -45,6 +47,29 @@ test('Quadbin getParent', async t => {
     t.deepEquals(quadkey2, quadkey.slice(0, tile.z), `parent correct ${quadkey2}`);
     t.deepEquals(Number(zoom), tile.z, `zoom correct ${zoom}`);
   }
+
+  t.end();
+});
+
+test('Quadbin cellToChildren', async t => {
+  const parentTile = { z: 8, x: 59, y: 97 };
+  const parent = tileToCell(parentTile);
+
+  t.deepEquals(cellToChildren(parent, 8n), [parent], 'children at resolution + 0');
+
+  // Order is row major, starting from NW and ending at SE.
+  t.deepEquals(
+    cellToChildren(parent, 9n).map(cellToTile),
+    [
+      { z: 9, x: 118, y: 194 }, // nw
+      { z: 9, x: 119, y: 194 }, // ne
+      { z: 9, x: 118, y: 195 }, // sw
+      { z: 9, x: 119, y: 195 }  // se
+    ],
+    'children at resolution + 1'
+  );
+
+  t.deepEquals(cellToChildren(parent, 10n).length, 16, 'children at resolution + 2');
 
   t.end();
 });
