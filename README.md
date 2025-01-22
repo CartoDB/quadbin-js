@@ -57,6 +57,15 @@ function cellToParent(quadbin: bigint): bigint
 
 Calculates the parent cell.
 
+## function cellToChildren
+
+```javascript
+function cellToChildren(quadbin: bigint, resolution: bigint): bigint[]
+```
+
+Calculates the child cells at given resolution. Results returned in
+row-major order starting from NW and ending at SE.
+
 ## tileToCell
 
 ```javascript
