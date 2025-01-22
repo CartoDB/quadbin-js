@@ -4,15 +4,16 @@
   "description": "Utility functions for working with Quadbins",
   "license": "MIT",
   "type": "module",
-  "main": "dist/cjs/index.cjs",
-  "module": "dist/esm/index.js",
-  "umd:main": "dist/umd/index.js",
-  "types": "dist/types/index.d.ts",
+  "source": "./src/index.ts",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.esm.js",
+  "umd:main": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/types/index.d.ts",
-      "import": "./dist/esm/index.js",
-      "require": "./dist/cjs/index.cjs"
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs"
     },
     "./*": "./*"
   },
@@ -26,43 +27,47 @@
     "url": "https://github.com/CartoDB/quadbin-js.git"
   },
   "scripts": {
-    "clean": "rm -rf dist/*",
-    "build": "yarn clean && yarn build:cjs && yarn build:esm && yarn build:types && yarn build:umd",
-    "build:cjs": "tsc -p tsconfig/tsconfig.cjs.json && mv dist/cjs/index.js dist/cjs/index.cjs",
-    "build:esm": "tsc -p tsconfig/tsconfig.esm.json",
-    "build:types": "tsc -p tsconfig/tsconfig.types.json",
-    "build:umd": "webpack --config tsconfig/webpack.config.cjs",
+    "clean": "rm -rf \"dist/*\"",
+    "build": "microbundle --name quadbin --format cjs,modern,umd --no-compress",
+    "build:watch": "microbundle watch --name quadbin --format cjs,modern,umd --no-compress",
     "lint": "prettier --check src",
     "test": "yarn lint && yarn test-fast",
-    "test-fast": "ts-node node_modules/tape/bin/tape test/**/*.spec.js",
-    "prepublishOnly": "yarn build"
+    "test-fast": "tsx node_modules/tape/bin/tape test/**/*.spec.js",
+    "postversion": "yarn postversion:check && yarn postversion:commit && yarn postversion:push",
+    "postversion:check": "yarn lint && yarn test",
+    "postversion:commit": "node scripts/postversion-commit.js",
+    "postversion:push": "git push && git push --tags",
+    "prepublish": "yarn lint && yarn test",
+    "prepack": "yarn clean && yarn build"
   },
   "browser": {
     "jsdom": false
   },
   "devDependencies": {
-    "@babel/register": "^7.13.0",
-    "@types/geojson": "^7946.0.14",
-    "babel-loader": "^8.0.0",
-    "babel-preset-minify": "^0.5.0",
-    "prettier": "^2.4.1",
+    "@types/geojson": "^7946.0.15",
+    "@types/semver": "^7",
+    "microbundle": "^0.15.1",
+    "prettier": "^3.4.2",
+    "semver": "^7.6.3",
     "tape": "^5.3.0",
-    "ts-loader": "^9.2.5",
-    "ts-node": "^10.9.2",
-    "typescript": "^4.4.4",
-    "webpack": "^5.52.1",
-    "webpack-cli": "^4.8.0"
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=18"
   },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "node >= 18"
+  ],
   "dependencies": {
     "@mapbox/tile-cover": "3.0.1",
     "@math.gl/web-mercator": "^4.1.0"
   },
-  "packageManager": "yarn@1.22.22",
+  "packageManager": "yarn@4.3.1",
   "volta": {
-    "node": "14.21.3",
-    "yarn": "1.22.22"
+    "node": "20.18.2",
+    "yarn": "4.3.1"
   }
 }

@@ -10,12 +10,17 @@ test/**/*-failed.png
 
 tsconfig.tsbuildinfo
 
-dist-demo/
-dist-bundle.js
-
 test/**/yarn.lock
 yarn-error.log
 package-lock.json
+
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
 
 .vscode/
 .project

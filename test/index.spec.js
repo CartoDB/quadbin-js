@@ -50,12 +50,12 @@ test('Quadbin getParent', async t => {
 });
 
 // Zoom:26 test not agreeing with Python
-import PointGeometry from './data/PointGeometry.json' assert {type: 'json'};
-import MultiPointGeometry from './data/MultiPointGeometry.json' assert {type: 'json'};
-import LineStringGeometry from './data/LineStringGeometry.json' assert {type: 'json'};
-import PolygonGeometry from './data/PolygonGeometry.json' assert {type: 'json'};
-import PolygonAntimeridianGeometry from './data/PolygonAntimeridianGeometry.json' assert {type: 'json'};
-import MultiPolygonGeometry from './data/MultiPolygonGeometry.json' assert {type: 'json'};
+import PointGeometry from './data/PointGeometry.json' with {type: 'json'};
+import MultiPointGeometry from './data/MultiPointGeometry.json' with {type: 'json'};
+import LineStringGeometry from './data/LineStringGeometry.json' with {type: 'json'};
+import PolygonGeometry from './data/PolygonGeometry.json' with {type: 'json'};
+import PolygonAntimeridianGeometry from './data/PolygonAntimeridianGeometry.json' with {type: 'json'};
+import MultiPolygonGeometry from './data/MultiPolygonGeometry.json' with {type: 'json'};
 const testCases = [
   PointGeometry,
   MultiPointGeometry,
