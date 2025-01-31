@@ -15,9 +15,9 @@ if (!valid(version)) {
   throw new Error(`Invalid version, "${version}"`);
 }
 
-// Check out a branch if cutting a version from 'main'.
+// Check out a branch if cutting a version from 'master'.
 const branch = execSync('git rev-parse --abbrev-ref HEAD').toString().trim();
-if (branch === 'main') {
+if (branch === 'master') {
   execSync(`git checkout -b 'release/${version}'`);
 }
 

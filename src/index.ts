@@ -108,7 +108,10 @@ export function cellToParent(quadbin: Quadbin): Quadbin {
 }
 
 /**
- * Returns the children of a cell, in row-major order starting from NW and ending at SE.
+ * Returns the children of a cell.
+ *
+ * @privateRemarks Order of the child cells would, preferably, be
+ *  row-major starting from NW and ending at SE.
  */
 export function cellToChildren(quadbin: Quadbin, resolution: bigint): Quadbin[] {
   if (resolution < 0 || resolution > 26 || resolution < getResolution(quadbin)) {

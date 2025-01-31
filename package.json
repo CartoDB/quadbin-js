@@ -1,6 +1,6 @@
 {
   "name": "quadbin",
-  "version": "0.2.0",
+  "version": "0.4.0-alpha.1",
   "description": "Utility functions for working with Quadbins",
   "license": "MIT",
   "type": "module",
@@ -27,7 +27,7 @@
     "url": "https://github.com/CartoDB/quadbin-js.git"
   },
   "scripts": {
-    "clean": "rm -rf \"dist/*\"",
+    "clean": "rm -rf dist/* || true",
     "build": "microbundle --name quadbin --format cjs,modern,umd --no-compress",
     "build:watch": "microbundle watch --name quadbin --format cjs,modern,umd --no-compress",
     "lint": "prettier --check src",
@@ -66,8 +66,5 @@
     "@math.gl/web-mercator": "^4.1.0"
   },
   "packageManager": "yarn@4.3.1",
-  "volta": {
-    "node": "20.18.2",
-    "yarn": "4.3.1"
-  }
+  "stableVersion": "0.3.0"
 }

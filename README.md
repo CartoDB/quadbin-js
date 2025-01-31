@@ -44,7 +44,7 @@ Decodes an string into an index. Inverse of `bigIntToHex()`.
 ## getResolution
 
 ```javascript
-function getResolution(quadbin: bigint): bigint 
+function getResolution(quadbin: bigint): bigint
 ```
 
 Calculates the resolution of a quadbin cell.
@@ -52,7 +52,7 @@ Calculates the resolution of a quadbin cell.
 ## function cellToParent
 
 ```javascript
-function cellToParent(quadbin: bigint): bigint 
+function cellToParent(quadbin: bigint): bigint
 ```
 
 Calculates the parent cell.
@@ -63,8 +63,7 @@ Calculates the parent cell.
 function cellToChildren(quadbin: bigint, resolution: bigint): bigint[]
 ```
 
-Calculates the child cells at given resolution. Results returned in
-row-major order starting from NW and ending at SE.
+Calculates the child cells at given resolution.
 
 ## tileToCell
 
@@ -77,7 +76,7 @@ Converts a xyz tile into a quadbin cell.
 ## cellToTile
 
 ```javascript
-function cellToTile(quadbin: bigint): Tile 
+function cellToTile(quadbin: bigint): Tile
 ```
 
 Converts quadbin cell into a xyz tile.
@@ -85,13 +84,13 @@ Converts quadbin cell into a xyz tile.
 ## geometryToCells
 
 ```javascript
-function geometryToCells(geometry: GeoJSONGeometry, resolution: bigint): bigint 
+function geometryToCells(geometry: GeoJSONGeometry, resolution: bigint): bigint
 ```
 
 ## cellToBoundary
 
 ```javascript
-function cellToBoundary(quadbin: Quadbin): Polygon 
+function cellToBoundary(quadbin: Quadbin): Polygon
 ```
 
 Converts a Quadbin cell identifier into a geographical boundary represented as a polygon
