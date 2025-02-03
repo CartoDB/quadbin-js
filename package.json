@@ -30,9 +30,9 @@
     "clean": "rm -rf dist/* || true",
     "build": "microbundle --name quadbin --format cjs,modern,umd --no-compress",
     "build:watch": "microbundle watch --name quadbin --format cjs,modern,umd --no-compress",
+    "test": "vitest run",
+    "test:watch": "vitest watch",
     "lint": "prettier --check src",
-    "test": "yarn lint && yarn test-fast",
-    "test-fast": "tsx node_modules/tape/bin/tape test/**/*.spec.js",
     "postversion": "yarn postversion:check && yarn postversion:commit && yarn postversion:push",
     "postversion:check": "yarn lint && yarn test",
     "postversion:commit": "node scripts/postversion-commit.js",
@@ -51,13 +51,13 @@
   },
   "devDependencies": {
     "@types/geojson": "^7946.0.15",
+    "@types/mapbox__tile-cover": "^3.0.4",
     "@types/semver": "^7",
     "microbundle": "^0.15.1",
     "prettier": "^3.4.2",
     "semver": "^7.6.3",
-    "tape": "^5.3.0",
-    "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.5"
   },
   "engines": {
     "node": ">=18"
