@@ -1,4 +1,6 @@
-export function tileToQuadkey(tile) {
+type Tile = {x: number; y: number; z: number};
+
+export function tileToQuadkey(tile: Tile) {
   let index = '';
   for (let z = tile.z; z > 0; z--) {
     let b = 0;
@@ -10,7 +12,7 @@ export function tileToQuadkey(tile) {
   return index;
 }
 
-function quadkeyToTile(quadkey) {
+function quadkeyToTile(quadkey: string) {
   const tile = {x: 0, y: 0, z: quadkey.length};
 
   for (let i = tile.z; i > 0; i--) {
