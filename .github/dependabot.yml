@@ -1,0 +1,16 @@
+version: 2
+updates:
+  - package-ecosystem: 'npm'
+    directory: '/'
+    schedule:
+      interval: 'monthly'
+    reviewers:
+      - 'CartoDB/app-dev-builder-team'
+    groups:
+      prod:
+        patterns:
+          - '@mapbox/*'
+          - '@math.gl/*'
+          - '@types/mapbox*'
+      dev:
+        dependency-type: 'development'
