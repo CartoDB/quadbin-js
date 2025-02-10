@@ -14,3 +14,7 @@ updates:
           - '@types/mapbox*'
       dev:
         dependency-type: 'development'
+    ignore:
+      # Update would require workaround for antimeridian:
+      # https://github.com/mapbox/tile-cover/issues/87
+      - dependency-name: '@mapbox/tile-cover'
