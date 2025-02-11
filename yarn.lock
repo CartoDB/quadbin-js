@@ -1485,12 +1485,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mapbox/tile-cover@npm:3.0.1":
-  version: 3.0.1
-  resolution: "@mapbox/tile-cover@npm:3.0.1"
+"@mapbox/tile-cover@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@mapbox/tile-cover@npm:3.0.2"
   dependencies:
-    tilebelt: "npm:^1.0.1"
-  checksum: 10c0/dd66725282ab6570280e91485b66846c4a3f18d71a53e43b2449c77691853ca6a0f6f03174b4ea00eade7d32376e13ad4f5a077399c97c105ef9348c080a38a7
+    "@mapbox/tilebelt": "npm:^1.0.1"
+  checksum: 10c0/ceba8a14aac6f69ed288ce49546a80d5cb6cc51e9274d8a9884ca8bfcb46e106160205f1d09235241be026aea96953c6f67a4aa60b611814bbc2b141cd14ac6d
+  languageName: node
+  linkType: hard
+
+"@mapbox/tilebelt@npm:^1.0.1":
+  version: 1.0.2
+  resolution: "@mapbox/tilebelt@npm:1.0.2"
+  checksum: 10c0/e0f6b6ed1fe87e6e076434ce11972fbda91df928c2056c48d7d4383330c56f5536748dc875db62577070b81c4a99caf33f62a844fdea2acbc3c9ce863f09e879
   languageName: node
   linkType: hard
 
@@ -5546,7 +5553,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "quadbin@workspace:."
   dependencies:
-    "@mapbox/tile-cover": "npm:3.0.1"
+    "@mapbox/tile-cover": "npm:3.0.2"
     "@math.gl/web-mercator": "npm:^4.1.0"
     "@types/geojson": "npm:^7946.0.15"
     "@types/mapbox__tile-cover": "npm:^3.0.4"
@@ -6524,13 +6531,6 @@ __metadata:
   bin:
     terser: bin/terser
   checksum: 10c0/ff0dc79b0a0da821e7f5bf7a047eab6d04e70e88b62339a0f1d71117db3310e255f5c00738fa3b391f56c3571f800a00047720261ba04ced0241c1f9922199f4
-  languageName: node
-  linkType: hard
-
-"tilebelt@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "tilebelt@npm:1.0.1"
-  checksum: 10c0/40d05eb7b84eabd5155347cdbfa3cbe459c634fa76a0c442c8c339b4e443e03f5f8576da37e373645305891bb49f6ba993bfe8ceb89093cae1e13053244c66c5
   languageName: node
   linkType: hard
 
