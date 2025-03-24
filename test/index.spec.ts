@@ -37,6 +37,7 @@ const TEST_TILES = [
 ];
 
 test('dependencies support esm', async () => {
+  // Avoid CJS-only dependencies, which cause issues for downstream users.
   // TODO: After Node.js v22 is the lowest version used in CI, replace the
   // `new URL(...)` and `resolve-package-path` lookups with the built-in
   // `module.findPackageJsonPath` in Node.js v22+.
