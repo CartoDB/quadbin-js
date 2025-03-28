@@ -1,6 +1,6 @@
 {
   "name": "quadbin",
-  "version": "0.4.0",
+  "version": "0.4.1-alpha.0",
   "description": "Utility functions for working with Quadbins",
   "license": "MIT",
   "type": "module",
@@ -50,11 +50,13 @@
     "jsdom": false
   },
   "devDependencies": {
+    "@mapbox/tile-cover": "3.0.1",
     "@types/geojson": "^7946.0.15",
     "@types/mapbox__tile-cover": "^3.0.4",
     "@types/semver": "^7",
     "microbundle": "^0.15.1",
     "prettier": "^3.4.2",
+    "resolve-package-path": "^4.0.3",
     "semver": "^7.6.3",
     "typescript": "^5.7.3",
     "vitest": "^3.0.5"
@@ -68,8 +70,8 @@
     "node >= 18"
   ],
   "dependencies": {
-    "@mapbox/tile-cover": "3.0.1",
     "@math.gl/web-mercator": "^4.1.0"
   },
-  "packageManager": "yarn@4.3.1"
+  "packageManager": "yarn@4.3.1",
+  "stableVersion": "0.4.0"
 }

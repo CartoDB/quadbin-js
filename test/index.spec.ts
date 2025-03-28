@@ -6,8 +6,7 @@ import {
   cellToTile,
   cellToParent,
   geometryToCells,
-  getResolution,
-  hexToBigInt
+  getResolution
 } from 'quadbin';
 
 import {tileToQuadkey} from './quadkey-utils.js';
