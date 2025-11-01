@@ -59,7 +59,7 @@
     "resolve-package-path": "^4.0.3",
     "semver": "^7.6.3",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.5"
+    "vitest": "^4.0.6"
   },
   "engines": {
     "node": ">=18"
